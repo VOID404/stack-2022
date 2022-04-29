@@ -42,7 +42,7 @@ int main() {
     };
 
     it("can be printed") = [] {
-      Stack<uint> s;
+      Stack<unsigned int> s;
 
       for (auto i = 0; i < 5; i++) {
         s.push(i);
