@@ -5,9 +5,11 @@
 #include <iostream>
 #include <iterator>
 #include <ostream>
+#include <utility>
 
 using std::distance;
 using std::forward_list;
+using std::move;
 using std::ostream;
 
 template <typename T> class Stack {
@@ -31,7 +33,11 @@ template <typename T> Stack<T>::Stack(int size, T value) : data(size, value) {}
 template <typename T>
 Stack<T>::Stack(const Stack<T> &other) : data(other.data) {}
 
-template <typename T> T Stack<T>::pop() { return this->data.pop_front(); }
+template <typename T> T Stack<T>::pop() {
+  T v = move(this->data.front());
+  this->data.pop_front();
+  return v;
+}
 template <typename T> void Stack<T>::push(T elem) {
   return this->data.push_front(elem);
 }
