@@ -20,6 +20,30 @@ public:
   Stack(int size = 0, T value = T());
   Stack(const Stack<T> &other);
 
+  class StackIter {
+    Stack<T> *stack;
+
+  public:
+    StackIter() : stack(nullptr) {}
+    StackIter(Stack<T> *elem) : stack(elem) {}
+
+    bool operator!=(StackIter const &other) { return not(*this == other); }
+    bool operator==(StackIter const &other) {
+      return stack == nullptr and other.stack->empty() or
+             stack->empty() and other.stack == nullptr or stack == other.stack;
+    }
+
+    StackIter &operator++() {
+      stack->pop();
+      return *this;
+    }
+
+    T &operator*() { return stack->data.front(); }
+  };
+
+  StackIter end() { return StackIter(); }
+  StackIter begin() { return StackIter(this); }
+
   inline bool empty() const;
   inline void push(T elem);
   inline T pop();

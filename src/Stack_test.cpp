@@ -56,6 +56,19 @@ int main() {
 
       expect(that % actual == expected);
     };
+
+    it("can be iterated over") = [] {
+      Stack<int> s;
+
+      for (auto i = 0; i < 32; i++) {
+        s.push(i);
+      }
+
+      auto i = 32;
+      for (auto e : s) {
+        expect(that % e == --i);
+      }
+    };
   };
 
   return 0;
