@@ -67,7 +67,7 @@ template <typename T> void Stack<T>::push(T elem) {
 }
 
 template <typename T> int Stack<T>::size() const {
-  return std::distance(data.begin(), data.end());
+  return distance(data.begin(), data.end());
 }
 template <typename T> bool Stack<T>::empty() const {
   return this->data.empty();
